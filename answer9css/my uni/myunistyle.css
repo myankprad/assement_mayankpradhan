@@ -1,0 +1,167 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    width: 100%;
+    min-height: 100vh;
+    background: url(./background.jpg);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+.banner{
+    width: 100%;
+    background-position: center;
+    background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7),);
+    background-size: cover;
+    position: relative;
+    }
+    nav{
+        display: flex;
+        padding: 2% 6%;
+        justify-content: space-between;
+        align-items: center;
+
+    }
+    nav img{
+        width: 150px;
+
+    }
+    .nav-links{
+        flex: 1;
+        text-align: right;
+
+    }
+    .nav-links ul li{
+        list-style: none;
+        padding: 10px;
+        display: inline-block;
+        position: relative;
+        gap: 15px;
+
+    }
+    .nav-links ul li a{
+        text-decoration: none;
+        color: beige;
+        font-size: 25px;
+    }
+    .text-box{
+        width: 90%;
+        position: absolute;
+        color: rgb(220, 33, 70);
+        top: 50%;
+        left: 50%;
+        text-align: center;
+        transform: translate(-50%,-50%);
+    }
+    .hero-btn{
+        display: inline-block;
+        text-decoration: none;
+        border: 1px, solid , #fff;
+        padding: 12px,34px;
+        position: relative;
+        cursor: pointer;
+        font-size: 12px;
+        background: transparent;
+        color: #c2a7a7;
+
+    }
+    .course{
+        width: 80%;
+        text-align: center;
+        margin: auto;
+        padding-top: 100px;
+
+    }
+    h1{
+        font-size: 36px;
+        font-weight: 600;
+
+    }
+    p{
+        font-size: 14px;
+        font-weight: 300;
+        color: #777;
+        padding: 10px;
+        line-height: 22px;
+
+    }
+    .row{
+        margin-top: 5%;
+        display: flex;
+        margin: 50px;
+        justify-content: space-between;
+    }
+    .course-clm{
+        flex-basis: 31%;
+        background: #fff3f3;
+        border-radius: 10px;
+        margin-bottom: 5%;
+        padding: 20px,12px;
+        box-sizing: border-box;
+        transition: 0.5s;
+
+    }
+    h3{
+        text-align: center;
+        font-weight: 600;
+        margin: 10px,0px;
+    }
+    .course-clm :hover{
+    box-shadow: 0 0 20px 0px rgba(0,0,0,0.2);    
+    }
+    .campus{
+        width: 80%;
+        margin: auto;
+        text-align: center;
+        padding-top: 50px;
+        
+    }
+    .campus-clm{
+        flex-basis: 30%;
+        border-radius: 10%;
+        position: relative;
+        margin-bottom: 30px;
+        overflow: hidden;
+        
+    }
+    .campus-clm img{
+        width: 100%;
+    display: flex;
+    }
+.layer{
+    background:transparent;
+    height: 100%;
+    width:100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 0.5s;
+    display: flex;
+}
+.layer:hover{
+    background:  rgba(226 0 0 0.7);
+}
+.layer h3{
+    text-align: center;
+}
+.raw{
+    display: flex;
+}
+.offer{
+    display: flex;
+    margin:  25px;
+}
+
+.london img{
+    height: 500px;
+    width: 400px;
+}
+
+.sec{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
