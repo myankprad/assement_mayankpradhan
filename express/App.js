@@ -7,10 +7,13 @@ app.get("/", function (req, res) {
     res.send("Hola como Estas ?");
   });
 
-app.get("/login", function(req, res){
+app.get("/login", (req, res)=>{
     res.send("Hello user")
 }) 
 
+app.get("/hog", (req, res)=>{
+    res.send("<h1>Hogwards Express</h1>")
+})
 
 app.get("/signin", function(req, res){
     res.send("Hello user please sign in")
