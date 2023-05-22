@@ -1,6 +1,7 @@
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: Open-sans, sans-serif;
     padding: 20px;
 }
 
@@ -25,9 +26,9 @@ form textarea {
 form button {
     padding: 10px;
     font-size: 16px;
-    background-color: #4caf50;
+    background-color: #500c48;
     color: #fff;
-    border: none;
+    border: 1px soild rgb(0, 0, 0);
     cursor: pointer;
 }
 
@@ -37,7 +38,7 @@ ul {
 }
 
 li {
-    background-color: #f1f1f1;
+    background-color: #de6f6f;
     padding: 20px;
     margin-bottom: 10px;
 }
@@ -49,8 +50,9 @@ li h3 {
 .delete-btn {
     padding: 5px 10px;
     font-size: 14px;
-    background-color: #ff3333;
+    background-color: #5d0270;
     color: #fff;
     border: none;
     cursor: pointer;
+    border-radius: 20px;
 }
