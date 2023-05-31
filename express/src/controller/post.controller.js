@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import asyncHandler from "../services/asyncHandler.js";
-import customError from "../utils/customError.js";
+import customError from "../helpers/customError.js";
 import Post from "../models/post.model.js";
 import crypto from "crypto";
 
@@ -15,15 +15,15 @@ export const send20Post = asyncHandler(async (req, res)=>{
         posts.push({title: title, body: body});
     }
 
-    const post = await Post.create(posts);
+    const AllPost = await Post.create(posts);
 
-    if(!post){
+    if(!AllPost){
         throw new customError("An error occured during posting ", 400);
     }
 
     res.status(200).json({
         success: true,
-        message: "All 20 posts are inserted into Database"
+        message: "20 posts are inserted into Database"
     })
 })
 

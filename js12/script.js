@@ -6,7 +6,7 @@ fetch('https://jsonplaceholder.typicode.com/posts')
         data.map(blog => {
             const li = document.createElement('li');
             li.innerHTML = `
-        <h3>${blog.title}</h3>
+        <h2>${blog.title}</h2>
         <p>${blog.body}</p>
         <button class="delete-btn" data-id="${blog.id}">Delete</button>
       `;
@@ -18,7 +18,7 @@ fetch('https://jsonplaceholder.typicode.com/posts')
             button.addEventListener('click', handleDelete);
         });
     })
-    .catch(error => console.log(error));
+    .catch(err => console.log(err));
 
 const addBlogForm = document.getElementById('add-blog-form');
 addBlogForm.addEventListener('submit', handleAddBlog);
@@ -46,7 +46,7 @@ function handleAddBlog(e) {
             const blogList = document.getElementById('blog-list');
             const li = document.createElement('li');
             li.innerHTML = `
-        <h3>${data.title}</h3>
+        <h2>${data.title}</h2>
         <p>${data.body}</p>
         <button class="delete-btn" data-id="${data.id}">Delete</button>
       `;
@@ -71,5 +71,5 @@ function handleDelete() {
             const blogItem = this.parentElement;
             blogItem.remove();
         })
-        .catch(error => console.log(error));
+        .catch(err => console.log(err));
 }

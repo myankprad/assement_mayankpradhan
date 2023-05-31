@@ -1,5 +1,5 @@
 import asyncHandler from "../services/asyncHandler.js";
-import customError from "../utils/customError.js";
+import customError from "../helpers/customError.js";
 import User from "../models/user.model.js";
 
 
