@@ -1,108 +1,88 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-import { AppBar, Toolbar, Box, Typography, IconButton, Drawer, List, styled } from '@mui/material';
-import { Menu } from '@mui/icons-material';
+import SearchIcon from '@mui/icons-material/Search';
+import { InputBase, List, ListItem, Box, styled } from '@mui/material';
 
+import { useSelector, useDispatch } from 'react-redux'; // hooks
+import { getProducts as listProducts } from '../../redux/actions/productActions';
 import { Link } from 'react-router-dom';
 
-//components
-import CustomButtons from './CustomButtons';
-import Search from './Search';
-
-const StyledHeader = styled(AppBar)`
-    background: #2874f0;
-    height: 55px;
+const SearchContainer = styled(Box)`
+  border-radius: 2px;
+  margin-left: 10px;
+  width: 38%;
+  background-color: #fff;
+  display: flex;
 `;
 
-const Component = styled(Link)`
-    margin-left: 12%;
-    line-height: 0;
-    color: #FFFFFF;
-    text-decoration: none;
+const SearchIconWrapper = styled(Box)`
+  margin-left: auto;
+  padding: 5px;
+  display: flex;
+  color: blue;
 `;
 
-const SubHeading = styled(Typography)`
-    font-size: 10px;
-    font-style: italic;
-`
+const ListWrapper = styled(List)`
+  position: absolute;
+  color: #000;
+  background: #FFFFFF;
+  margin-top: 36px;
+`;
 
-const PlusImage = styled('img')({
-    width: 10,
-    height: 10,
-    marginLeft: 4
-})
+const InputSearchBase = styled(InputBase)`
+  font-size: unset;
+  width: 100%;
+  padding-left: 20px;
+`;
 
-const MenuButton = styled(IconButton)(({ theme }) => ({
-    display: 'none',
-    [theme.breakpoints.down('sm')]: {
-        display: 'block'
-    }
-}));
+const Search = () => {
+    const [ text, setText ] = useState();
+    const [ open, setOpen ] = useState(true)
 
-const CustomButtonWrapper = styled('span')(({ theme }) => ({ 
-    margin: '0 5% 0 auto', 
-    [theme.breakpoints.down('sm')]: {
-        display: 'none'
-    }
-}));
-
-const Header = () => {
-    const logoURL = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/flipkart-plus_8d85f4.png';
-    const subURL = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/plus_aef861.png';
-
-    const [open, setOpen] = useState(false);
-
-    const handleClose = () => {
-        setOpen(false);
+    const getText = (text) => {
+        setText(text);
+        setOpen(false)
     }
 
-    const handleOpen = () => {
-        setOpen(true);
-    }
+    const getProducts = useSelector(state => state.getProducts);
+    const { products } = getProducts;
 
-    const list = () => (
-        <Box style={{ width: 250 }} onClick={handleClose}>
-            <List>
-                <listItem button>
-                    <CustomButtons />
-                </listItem>
-            </List>
-        </Box>
-    );
+    const dispatch = useDispatch();
 
+    useEffect(() => {
+        dispatch(listProducts())
+    }, [dispatch])
 
     return (
-        <StyledHeader position="fixed">
-            <Toolbar style={{ minHeight: 55 }}>
-                <MenuButton
-                    color="inherit"
-                    onClick={handleOpen}
-                >
-                    <Menu />
-                </MenuButton>
-
-                <Drawer open={open} onClose={handleClose}>
-                    {list()}
-                </Drawer>
-
-                <Component to='/'>
-                    <img src={logoURL} style={{ width: 75 }} />
-                    <Box component="span" style={{ display: 'flex' }}>
-                        <SubHeading>Explore&nbsp;
-                            <Box component="span" style={{color:'#FFE500'}}>
-                                Plus
-                            </Box>
-                        </SubHeading>
-                        <PlusImage src={subURL} />
-                    </Box>
-                </Component>
-                <Search />
-                <CustomButtonWrapper>
-                    <CustomButtons />
-                </CustomButtonWrapper>
-            </Toolbar>
-        </StyledHeader>
+        <SearchContainer>
+            <InputSearchBase
+              placeholder="Search for products, brands and more"
+              inputProps={{ 'aria-label': 'search' }}
+              onChange={(e) => getText(e.target.value)}
+            />
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            {
+              text && 
+              <ListWrapper hidden={open}>
+                {
+                  products.filter(product => product.title.longTitle.toLowerCase().includes(text.toLowerCase())).map(product => (
+                    <ListItem>
+                      <Link 
+                        to={`/product/${product.id}`} 
+                        style={{ textDecoration:'none', color:'inherit'}}
+                        onClick={() => setOpen(true)}  
+                      >
+                        {product.title.longTitle}
+                      </Link>
+                    </ListItem>
+                  ))
+                }  
+              </ListWrapper>
+            }
+        </SearchContainer>
     )
 }
 
-export default Header;
+export default Search;
